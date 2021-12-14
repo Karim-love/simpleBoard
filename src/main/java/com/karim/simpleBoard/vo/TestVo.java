@@ -14,7 +14,6 @@ public class TestVo {
     private String userId;
     private String userPw;
     private String userName;
-    private String UserAuth;
     private String appendDate;
     private String updateDate;
 }

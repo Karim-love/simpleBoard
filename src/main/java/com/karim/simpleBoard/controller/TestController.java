@@ -1,11 +1,13 @@
 package com.karim.simpleBoard.controller;
 
+import ch.qos.logback.classic.Logger;
 import com.karim.simpleBoard.service.TestService;
 import com.karim.simpleBoard.vo.TestVo;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
 import java.util.List;
 
 /**
@@ -17,18 +19,24 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TestController {
 
+    private final ch.qos.logback.classic.Logger logger = (Logger) LoggerFactory.getLogger(TestController.class);
+
     private final TestService testService;
 
-    @GetMapping("/")
+    @GetMapping("/test")
     public String test() {
         List<TestVo> list = testService.getAllUserList();
         System.out.println(list);
+        logger.info("{} => {}", "list", list);
         return "test";
     }
 
     @GetMapping("/hello")
-    public String hello(String name) {
-        //http://localhost:8080/hello?name=subin
-        return "Hello World! = " + name;
+    public String hello(String name, Model model) {
+        //http://localhost:8080/hello?name=karim
+        model.addAttribute("name", name);
+        logger.info("{} => {}", "name", name);
+        //html 이름
+        return "hello";
     }
 }
