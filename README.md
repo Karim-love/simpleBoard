@@ -27,7 +27,7 @@ spring Boot 의 기본 동작을 공부하기 위해 간단한 게시판을 구�
 ## 6. vo
 - 로그인, 게시판 정보등이 있는 vo 모음
 
-## ✔ Resources 별 정리
+## ✔️Resources 별 정리
 
 ## 1. query
 - mapper 에서 사용할 sql 모음
