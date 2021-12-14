@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.karim.simpleBoard.mapper.UserMapper">
+    <select id="getUserAccount" resultType="com.karim.simpleBoard.vo.UserVo">
+        SELECT * FROM TB_USER
+        WHERE USER_ID= #{userId}
+    </select>
+
+    <insert id="saveUser" parameterType="com.karim.simpleBoard.vo.UserVo">
+        INSERT INTO TB_USER
+        (USER_ID, USER_PW, USER_NAME, USER_AUTH, APPEND_DATE, UPDATE_DATE)
+        VALUES(#{userId},#{userPw},#{userName},#{userAuth},#{appendDate},#{updateDate});
+    </insert>
+</mapper>
