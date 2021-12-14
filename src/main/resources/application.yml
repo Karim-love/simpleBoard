@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: "jdbc:mariadb://192.168.124.238:1222/simpleBoard"
+    username: "sblim"
+    password: "sblim"
+    driver-class-name: "org.mariadb.jdbc.Driver"
+
+mybatis:
+  # mapper 경로 지정
+  mapper-locations: query/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
