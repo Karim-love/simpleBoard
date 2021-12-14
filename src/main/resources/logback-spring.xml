@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- For assistance related to logback-translator or configuration  -->
+<!-- files in general, please contact the logback user mailing list -->
+<!-- at http://www.qos.ch/mailman/listinfo/logback-user             -->
+<!--                                                                -->
+<!-- For professional support please see                            -->
+<!--    http://www.qos.ch/shop/products/professionalSupport         -->
+<!--                                                                -->
+<configuration scan="true" scanPeriod="60 seconds">
+
+  <property name="LOG_DIR" value="./logs" />
+  <property name="LOG_HISTORY" value="7" />
+
+    <!-- Console Log -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <withJansi>true</withJansi>
+        <encoder>
+            <pattern>%yellow([%d{yyyyMMddHHmmss}]) %highlight(%-5level) %cyan(%C) => %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="spring_file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${LOG_DIR}/spring.log</File>
+        <encoder>
+            <pattern>[%d{yyyyMMddHHmmss}] %-5level %C => %m%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/spring.log.%d{yyyy-MM-dd}</fileNamePattern>
+            <maxHistory>${LOG_HISTORY}</maxHistory>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+    </appender>
+
+    <logger name="org.springframework" level="INFO">
+        <appender-ref ref="spring_file" />
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="console"/>
+    </root>
+
+</configuration>
