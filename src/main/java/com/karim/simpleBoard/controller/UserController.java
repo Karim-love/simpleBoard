@@ -23,6 +23,15 @@ public class UserController {
     UserService userService;
 
     /**
+     * 로그인 폼
+     * @return
+     */
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
+
+    /**
      * 회원가입 폼
      * @return
      */
