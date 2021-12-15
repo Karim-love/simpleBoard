@@ -26,17 +26,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .antMatchers("/" , "/login" , "/resources/**").permitAll() // 로그인 권한은 누구나, resources파일도 모든권한
                 // USER, ADMIN 접근 허용
                 .antMatchers("/userAccess").hasRole("USER")
                 .antMatchers("/userAccess").hasRole("ADMIN")
                 .antMatchers("/signUp").anonymous()
                 .and()
                 .formLogin()
-                .loginPage("/login")
-                .loginProcessingUrl("/login_proc")
-                .defaultSuccessUrl("/")
-                .and()
-                .csrf().disable();		//로그인 창
+                    .loginPage("/login")
+                    .loginProcessingUrl("/login_proc")
+                    .defaultSuccessUrl("/user_access")
+                    .permitAll();
     }
 
     /**

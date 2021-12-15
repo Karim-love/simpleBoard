@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * Created by sblim
@@ -26,7 +27,7 @@ public class UserController {
      * 로그인 폼
      * @return
      */
-    @GetMapping("/login")
+    @RequestMapping("/")
     public String login(){
         return "login";
     }
@@ -57,7 +58,7 @@ public class UserController {
      * @param authentication
      * @return
      */
-    @GetMapping("/")
+    @GetMapping("/user_access")
     public String userAccess(Model model, Authentication authentication) {
         //Authentication 객체를 통해 유저 정보를 가져올 수 있다.
         UserVo userVo = (UserVo) authentication.getPrincipal();  //userDetail 객체를 가져옴
