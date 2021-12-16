@@ -41,6 +41,10 @@ public class UserService implements UserDetailsService{
     @Override
     public UserVo loadUserByUsername(String userId) throws UsernameNotFoundException {
         //여기서 받은 유저 패스워드와 비교하여 로그인 인증
-        return userMapper.getUserAccount(userId);
+        UserVo userVo = userMapper.getUserAccount(userId);
+        if (userVo == null){
+            throw new UsernameNotFoundException("User not authorized.");
+        }
+        return userVo;
     }
 }
