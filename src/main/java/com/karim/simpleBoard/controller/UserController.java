@@ -50,6 +50,15 @@ public class UserController {
     }
 
     /**
+     * 로그인 실패 폼
+     * @return
+     */
+    @GetMapping("/access_denied")
+    public String accessDenied() {
+        return "access_denied";
+    }
+
+    /**
      * 회원가입 진행
      * @param userVo
      * @return
