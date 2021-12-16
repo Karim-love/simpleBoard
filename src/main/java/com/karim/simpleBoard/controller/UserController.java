@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * Created by sblim
@@ -24,10 +23,19 @@ public class UserController {
     UserService userService;
 
     /**
+     * localhost:8080 시 login 으로 redirect
+     * @return
+     */
+    @GetMapping
+    public String root() {
+        return "redirect:/login";
+    }
+
+    /**
      * 로그인 폼
      * @return
      */
-    @RequestMapping("/")
+    @GetMapping("/login")
     public String login(){
         return "login";
     }
@@ -38,12 +46,12 @@ public class UserController {
      */
     @GetMapping("/signUp")
     public String signUpForm() {
-        return "signup";
+        return "signUp";
     }
 
     /**
      * 회원가입 진행
-     * @param user
+     * @param userVo
      * @return
      */
     @PostMapping("/signUp")
@@ -62,7 +70,7 @@ public class UserController {
     public String userAccess(Model model, Authentication authentication) {
         //Authentication 객체를 통해 유저 정보를 가져올 수 있다.
         UserVo userVo = (UserVo) authentication.getPrincipal();  //userDetail 객체를 가져옴
-        model.addAttribute("info", userVo.getUserId());      //유저 아이디
+        model.addAttribute("info", userVo.getUserId() +"의 "+ userVo.getUserName()+ "님");      //유저 아이디
         return "user_access";
     }
 }

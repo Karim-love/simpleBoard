@@ -34,9 +34,16 @@ public class UserVo implements UserDetails {
         return this.userPw;
     }
 
+    // 시큐리티의 userName
+    // -> 따라서 얘는 인증할 때 id를 봄
     @Override
     public String getUsername() {
         return this.userId;
+    }
+
+    // Vo의 userName !
+    public String getUserName(){
+        return this.userName;
     }
 
     @Override

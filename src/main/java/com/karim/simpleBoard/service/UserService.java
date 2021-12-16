@@ -32,8 +32,6 @@ public class UserService implements UserDetailsService{
     public void joinUser(UserVo userVo){
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         userVo.setUserPw(passwordEncoder.encode(userVo.getPassword()));
-        userVo.setUserId(userVo.getUserId());
-        userVo.setUserName(userVo.getUsername());
         userVo.setUserAuth("USER");
         userVo.setAppendDate(localTime);
         userVo.setUpdateDate(localTime);
@@ -43,7 +41,6 @@ public class UserService implements UserDetailsService{
     @Override
     public UserVo loadUserByUsername(String userId) throws UsernameNotFoundException {
         //여기서 받은 유저 패스워드와 비교하여 로그인 인증
-        UserVo userVo = userMapper.getUserAccount(userId);
-        return userVo;
+        return userMapper.getUserAccount(userId);
     }
 }
