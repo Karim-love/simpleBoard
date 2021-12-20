@@ -3,7 +3,6 @@ package com.karim.simpleBoard.service;
 import com.karim.simpleBoard.mapper.UserMapper;
 import com.karim.simpleBoard.vo.UserVo;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -25,8 +24,7 @@ public class UserService implements UserDetailsService{
     Date time = new Date();
     String localTime = format.format(time);
 
-    @Autowired
-    UserMapper userMapper;
+    private final UserMapper userMapper;
 
     @Transactional
     public void joinUser(UserVo userVo){

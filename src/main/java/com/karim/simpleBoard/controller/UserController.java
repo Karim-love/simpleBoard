@@ -3,7 +3,6 @@ package com.karim.simpleBoard.controller;
 import com.karim.simpleBoard.service.UserService;
 import com.karim.simpleBoard.vo.UserVo;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,8 +18,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 @RequiredArgsConstructor
 public class UserController {
-    @Autowired
-    UserService userService;
+
+    private final UserService userService;
 
     /**
      * localhost:8080 시 login 으로 redirect
